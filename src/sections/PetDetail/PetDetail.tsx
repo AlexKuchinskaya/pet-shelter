@@ -1,9 +1,17 @@
-import { useMemo } from 'react'
 import { useParams } from 'react-router-dom'
 import { AnimalRepository } from '../../domain/AnimalRepository';
 import { useAnimal } from '../../hooks/useAnimal';
+import { AdoptForm } from '../AdoptForm/AdoptForm';
+import { ContactRepository } from '../../domain/ContactRepository';
 
-export const PetDetail = ({animalRepository}: {animalRepository: AnimalRepository}) => {
+export const PetDetail = ({
+  animalRepository, 
+  contactRepository,
+}:
+  {
+    animalRepository: AnimalRepository,
+    contactRepository: ContactRepository,
+  }) => {
   const { id } = useParams() as {id: string}; //tengo que estar segura de que me va a venir el valor
   //const cachedId = useMemo(() => id, [id])
   
@@ -18,24 +26,7 @@ export const PetDetail = ({animalRepository}: {animalRepository: AnimalRepositor
       {id.length}
       <div>PetDetail</div>
       <div>{animal.name}</div>
+      <AdoptForm repository={contactRepository} />
     </div>
   )
 }
-
-/* const returnMe = (a: any) => a;
-const a = {
-  name:'hola'
- } ;
- const bc = returnMe(a);
-bc.name
-function returnmeG<T>(a: T): T {
-  return a;
-} 
-
-useParams<T>(){
-  Readonly<Params<T>>
-}
-
-const b = returnmeG(a);
-
-b.name */

@@ -1,5 +1,6 @@
 import { Contact } from "./Contact";
 
 export interface ContactRepository {
-  save(contact: Contact): Promise<void>
+  search(): Promise<Contact[]>;
+  save(contact: Contact): Promise<void>;
 }
