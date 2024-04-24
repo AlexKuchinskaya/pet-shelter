@@ -13,10 +13,8 @@ export const useAnimals = (animalRepository: AnimalRepository): {
     setLoading(true);
     animalRepository.search()
       .then(data => setRepositoryData(data))
-      .then(() => {
-        document.dispatchEvent(new CustomEvent('pageLoaded'))
-      })
       .finally(() => {
+        document.dispatchEvent(new CustomEvent('pageLoaded'));
         setLoading(false);
       })
   }, [animalRepository])

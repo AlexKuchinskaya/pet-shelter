@@ -17,8 +17,14 @@ export class LocalStorageContactRepository implements ContactRepository {
         return JSON.parse(data) as Contact[]
       })
   }
-  async save(contact: Contact): Promise<void> {
-    await Promise.resolve()
-  }
 
+  async save(contact: Contact): Promise<void> {
+    this.search()
+      .then((contacts) => {
+        localStorage.setItem(
+          this.localStorageKey,
+          JSON.stringify([...contacts, contact])
+        )
+      })
+  }
 }
