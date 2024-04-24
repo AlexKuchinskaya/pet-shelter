@@ -13,7 +13,7 @@ type FormEventType<T extends {[key: string]: string}> = FormEvent<HTMLFormElemen
   target: {
     elements: {
       [key in keyof T]: {
-        value: string
+        value: T[key]
       }
     } 
   }
